@@ -13,36 +13,37 @@ class Character extends MovableObject {
         ];
         currentImage = 0;
         world;
+        walking_sound = new Audio('audio/running.mp3')
+
+
 
     constructor(){
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png',)
         this.loadImages(this.IMAGES_IDLE);
         this.animateCharacter();
     };
-
+a
     animateCharacter() {
         setInterval(() => {
-            if (this.world.keyboard.D){
+            if (this.world.keyboard.D && this.x < this.world.level.level_end_x){
             this.x += this.speed;
             this.otherDirection = false;
+            // this.walking_sound.play();
             }
 
-            if (this.world.keyboard.A){
+            if (this.world.keyboard.A && this.x > 0 ){
                 this.x -= this.speed;
                 this.otherDirection = true;
+                // this.walking_sound.play();
             }
-            this.world.camera_x = -this.x
+            this.world.camera_x = -this.x + 150;
         }, 1000 / 60);
 
 
         setInterval(() => {
             if (this.world.keyboard.D || this.world.keyboard.A) {
             // walk Animation
-            let i = this.currentImage % this.IMAGES_IDLE.length; //let i = 0 % 6; =>0, Rest 0 |...| let i = 7 % 6; => 1, Rest 1
-            //i = 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, ....
-            let path = this.IMAGES_IDLE[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+                this.playAnimation(this.IMAGES_IDLE);
             }
         }, 1000 / 20);
 
