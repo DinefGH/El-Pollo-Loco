@@ -1,6 +1,10 @@
 class World {
 
     character = new Character();
+    StatusbarCoins = new StatusbarCoins();
+    StatusbarHealth = new StatusbarHealth();
+    StatusbarBottle = new StatusbarBottle();
+
     level = level1;
     canvas;
     ctx;
@@ -19,6 +23,9 @@ class World {
 
     setWorld(){
         this.character.world = this;
+        this.StatusbarCoins.world = this;
+        this.StatusbarHealth.world = this;
+        this.StatusbarBottle.world = this;
     }
 
 
@@ -32,6 +39,14 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.collectables);
         this.addToMap(this.character);
+        this.addToMap(this.StatusbarCoins);
+        this.addToMap(this.StatusbarHealth);
+        this.addToMap(this.StatusbarBottle);
+        
+        
+
+        
+
 
         this.ctx.translate(-this.camera_x, 0);
 

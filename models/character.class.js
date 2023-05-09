@@ -22,7 +22,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_IDLE);
         this.animateCharacter();
     };
-a
+
     animateCharacter() {
         setInterval(() => {
             if (this.world.keyboard.D && this.x < this.world.level.level_end_x){
