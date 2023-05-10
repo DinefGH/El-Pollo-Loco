@@ -4,6 +4,8 @@ class StatusbarBottle extends MovableObject {
     width = 200;
     speed = 5;
     y = 115;
+
+    
     IMAGES_IDLE = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
         ];
