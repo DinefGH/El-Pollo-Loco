@@ -4,17 +4,23 @@ class StatusbarHealth extends MovableObject {
     width = 200;
     speed = 5;
     y = -15;
-    IMAGES_IDLE = [
+    IMAGES_HEALTH = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png',
+        'img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png',
         ];
-        currentImage = 0;
         world;
+
+        percentage
 
 
 
     constructor(){
         super().loadImage('img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',)
-        this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_HEALTH);
         this.animateStatusbarHealth();
     };
 

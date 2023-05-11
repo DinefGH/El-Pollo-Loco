@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  statusBar = new StatusBar();
   StatusbarCoins = new StatusbarCoins();
   StatusbarHealth = new StatusbarHealth();
   StatusbarBottle = new StatusbarBottle();
@@ -16,6 +17,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
@@ -23,6 +25,19 @@ class World {
     this.StatusbarCoins.world = this;
     this.StatusbarHealth.world = this;
     this.StatusbarBottle.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach( (enemy) => {
+       if( this.character.isColliding(enemy)) {
+        this.character.hit();
+          // console.log('Collision with Character, energy ', this.character.energy);
+       }
+
+      });
+    }, 100);
+
   }
 
   draw() {
