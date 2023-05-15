@@ -1,8 +1,6 @@
 class World {
   character = new Character();
-  statusBar = new StatusBar();
   StatusbarCoins = new StatusbarCoins();
-  StatusbarHealth = new StatusbarHealth();
   StatusbarBottle = new StatusbarBottle();
 
   level = level1;
@@ -10,6 +8,8 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
+  statusBar = new StatusBar();
+  throwableObjects = [new ThrowableObject()];
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -17,42 +17,72 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
+    this.run();
   }
 
   setWorld() {
     this.character.world = this;
+    this.statusBar.world = this;
     this.StatusbarCoins.world = this;
-    this.StatusbarHealth.world = this;
     this.StatusbarBottle.world = this;
   }
 
-  checkCollisions() {
+  run() {
     setInterval(() => {
-      this.level.enemies.forEach( (enemy) => {
-       if( this.character.isColliding(enemy)) {
-        this.character.hit();
-          // console.log('Collision with Character, energy ', this.character.energy);
-       }
 
-      });
+      this.checkCollisions();
+      this.checkThrowObjects();
+
     }, 100);
 
+  }
+
+  checkThrowObjects() {
+    if(this.keyboard.SPACE) {
+    let bottle = new ThrowableObject(this.character.x, this.character.y);
+    this.throwableObjects.push(bottle)
+  }
+  }
+
+  checkCollisions() {
+    this.level.enemies.forEach( (enemy) => {
+      if( this.character.isColliding(enemy)) {
+       this.character.hit();
+       this.statusBar.setPercentage(this.character.energy);
+         // console.log('Collision with Character, energy ', this.character.energy);
+      }
+
+     });
   }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
-
     this.addObjectsToMap(this.level.backgroundObjects);
+
+
+    this.ctx.translate(-this.camera_x, 0); // Back
+    // Space for fixed objects 
+    this.addToMap(this.statusBar);
+    this.ctx.translate(this.camera_x, 0); // Forwards
+    
+
+
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.collectables);
+    this.addObjectsToMap(this.throwableObjects);
+
+    
+
     this.addToMap(this.character);
+
+    
+    
     this.addToMap(this.StatusbarCoins);
-    this.addToMap(this.StatusbarHealth);
     this.addToMap(this.StatusbarBottle);
+   
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -81,6 +111,8 @@ class World {
       this.flipImageBack(mo);
     }
   }
+
+
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
