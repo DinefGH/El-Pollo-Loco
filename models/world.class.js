@@ -1,7 +1,5 @@
 class World {
   character = new Character();
-  StatusbarCoins = new StatusbarCoins();
-  StatusbarBottle = new StatusbarBottle();
 
   level = level1;
   canvas;
@@ -9,6 +7,8 @@ class World {
   keyboard;
   camera_x = 0;
   statusBar = new StatusBar();
+  coinsBar = new CoinsBar();
+  bottlesBar = new BottlesBar();
   throwableObjects = [new ThrowableObject()];
 
   constructor(canvas) {
@@ -23,14 +23,16 @@ class World {
   setWorld() {
     this.character.world = this;
     this.statusBar.world = this;
-    this.StatusbarCoins.world = this;
-    this.StatusbarBottle.world = this;
+    this.coinsBar.world = this;
+    this.bottlesBar.world = this;
   }
 
   run() {
     setInterval(() => {
 
       this.checkCollisions();
+      this.checkCollisionsBottles();
+      this.checkCollisionsCoins();
       this.checkThrowObjects();
 
     }, 100);
@@ -38,7 +40,7 @@ class World {
   }
 
   checkThrowObjects() {
-    if(this.keyboard.SPACE) {
+    if(this.keyboard.SPACE && bottlesAmmount > 0 ) {
     let bottle = new ThrowableObject(this.character.x, this.character.y);
     this.throwableObjects.push(bottle)
   }
@@ -55,34 +57,61 @@ class World {
      });
   }
 
+
+  checkCollisionsBottles() {
+    this.level.bottles.forEach( (bottle) => {
+      if( this.character.isColliding(bottle)) {
+       this.character.hitBottles();
+       this.bottlesBar.setPercentage(this.character.bottlesAmmount);
+         console.log('Collision with Character, bottlesAmmount ', this.character.bottlesAmmount);
+      }
+
+     });
+
+  }
+
+  checkCollisionsCoins() {
+    this.level.coins.forEach( (coin) => {
+      if( this.character.isColliding(coin)) {
+       this.character.hitCoins();
+       this.coinsBar.setPercentage(this.character.coinsAmmount);
+         console.log('Collision with Character, coinsAmmount ', this.character.coinsAmmount);
+      }
+
+     });
+  }
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
-
+    this.addObjectsToMap(this.level.clouds);
 
     this.ctx.translate(-this.camera_x, 0); // Back
     // Space for fixed objects 
     this.addToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0); // Forwards
+
+    
+    this.ctx.translate(-this.camera_x, 0); // Back
+    // Space for fixed objects 
+    this.addToMap(this.coinsBar);
+    this.ctx.translate(this.camera_x, 0); // Forwards
+
+    this.ctx.translate(-this.camera_x, 0); // Back
+    // Space for fixed objects 
+    this.addToMap(this.bottlesBar);
+    this.ctx.translate(this.camera_x, 0); // Forwards
     
 
-
-    this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.collectables);
+    this.addObjectsToMap(this.level.coins);
+    this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.throwableObjects);
-
-    
 
     this.addToMap(this.character);
 
-    
-    
-    this.addToMap(this.StatusbarCoins);
-    this.addToMap(this.StatusbarBottle);
-   
 
     this.ctx.translate(-this.camera_x, 0);
 
