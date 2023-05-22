@@ -6,7 +6,7 @@ class Bottles extends MovableObject {
 
 
     currentImage = 0;
-    y = 100
+    y = 180
     height = 60
 
     constructor(){

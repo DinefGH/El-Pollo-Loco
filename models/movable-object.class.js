@@ -12,6 +12,32 @@ class MovableObject extends DrawableObject {
   coinsAmmount = 0;
   lastHit = 0;
 
+  // ==> Chicken
+  offsetCh = {
+    topCh: 0,
+    bottomCh: 80,
+    leftCh: 20,
+    rightCh: 0,
+  }
+
+
+  // C ==> Coins
+  offsetC = {
+    topC: 0,
+    bottomC: 80,
+    leftC: 50,
+    rightC: 0,
+  }
+
+
+  // B ==> Bottles
+  offsetB = {
+    topB: 0,
+    bottomB: 50,
+    leftB: 40,
+    rightB: 0,
+  }
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -30,13 +56,31 @@ class MovableObject extends DrawableObject {
   }
 
 
-  // character.isColliding(chicken);
-  isColliding(mo) {  
-    return  this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height
+  // character.isCollidingChicken(chicken);
+  isCollidingChicken(mo) {  
+    return  this.x + this.width - this.offsetCh.rightCh > mo.x + mo.offsetCh.leftCh &&
+            this.y + this.height - this.offsetCh.bottomCh > mo.y + mo.offsetCh.topCh &&
+            this.x + this.offsetCh.leftCh < mo.x + mo.width - mo.offsetCh.rightCh &&
+            this.y + this.offsetCh.topCh < mo.y + mo.height - mo.offsetCh.bottomCh;
   }
+
+
+  // character.isCollidingCoins(coins);
+  isCollidingCoins(mo) {  
+    return  this.x + this.width - this.offsetC.rightC > mo.x + mo.offsetC.leftC &&
+            this.y +40 + this.height-50 - this.offsetC.bottomC > mo.y + mo.offsetC.topC &&
+            this.x + this.offsetC.leftC < mo.x + mo.width - mo.offsetC.rightC &&
+            this.y +40 + this.offsetC.topC < mo.y + mo.height -50 - mo.offsetC.bottomC;
+  }
+
+   // character.isCollidingBottle(bottles);
+   isCollidingBottle(mo) {  
+    return  this.x + this.width - this.offsetB.rightB > mo.x + mo.offsetB.leftB &&
+            this.y +40 + this.height -50 - this.offsetB.bottomB > mo.y + mo.offsetB.topB &&
+            this.x + this.offsetB.leftB < mo.x + mo.width - mo.offsetB.rightB &&
+            this.y +40+ this.offsetB.topB < mo.y + mo.height -50 - mo.offsetB.bottomB;
+  }
+
 
   hitBottles() {
     this.bottlesAmmount += 20;

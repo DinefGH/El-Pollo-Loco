@@ -5,7 +5,7 @@ class Coins extends MovableObject {
     ]
 
     currentImage = 0;
-    y = 100
+    y = 140
 
     constructor(){
         super().loadImage('img/8_coin/coin_1.png')

@@ -1,7 +1,9 @@
 class ThrowableObject extends MovableObject {
     IMAGES_IDLE = [
-        'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
-        'img/6_salsa_bottle/2_salsa_bottle_on_ground.png',
+        'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png',
     ]
 
     currentImage = 0;
@@ -15,7 +17,8 @@ class ThrowableObject extends MovableObject {
         this.x = 200 + Math.random() * 2000; //Zahl zwischen 200 und 700 (random zahl zwischen 0 und 1)
         
         this.animateBottles();
-        this.throw(100, 150);
+        this.throw();
+        console.log(this.x);
     }
 
 
@@ -23,7 +26,7 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
 // walk Animation
 this.playAnimation(this.IMAGES_IDLE);
-        }, 1000 / 2);
+        }, 1000 / 10);   
 
     }
 

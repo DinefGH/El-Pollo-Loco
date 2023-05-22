@@ -10,7 +10,7 @@ class CoinsBar extends DrawableObject {
         ];
     
     
-        percentage = 100;
+        percentage = 0;
     
     
         constructor() {
@@ -20,7 +20,7 @@ class CoinsBar extends DrawableObject {
             this.y = 40;
             this.width = 200;
             this.height = 70;
-            this.setPercentage(100);
+            this.setPercentage(0);
         };
     
     

@@ -39,8 +39,9 @@ class World {
 
   }
 
+
   checkThrowObjects() {
-    if(this.keyboard.SPACE && bottlesAmmount > 0 ) {
+    if(this.keyboard.SPACE && this.character.bottlesAmmount > 0 ) {
     let bottle = new ThrowableObject(this.character.x, this.character.y);
     this.throwableObjects.push(bottle)
   }
@@ -48,7 +49,7 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach( (enemy) => {
-      if( this.character.isColliding(enemy)) {
+      if( this.character.isCollidingChicken(enemy)) {
        this.character.hit();
        this.statusBar.setPercentage(this.character.energy);
          // console.log('Collision with Character, energy ', this.character.energy);
@@ -59,9 +60,10 @@ class World {
 
 
   checkCollisionsBottles() {
-    this.level.bottles.forEach( (bottle) => {
-      if( this.character.isColliding(bottle)) {
+    this.level.bottles.forEach( (bottle, index) => {
+      if( this.character.isCollidingBottle(bottle)) {
        this.character.hitBottles();
+       this.level.bottles.splice(index, 1);
        this.bottlesBar.setPercentage(this.character.bottlesAmmount);
          console.log('Collision with Character, bottlesAmmount ', this.character.bottlesAmmount);
       }
@@ -71,9 +73,10 @@ class World {
   }
 
   checkCollisionsCoins() {
-    this.level.coins.forEach( (coin) => {
-      if( this.character.isColliding(coin)) {
+    this.level.coins.forEach( (coin, index) => {
+      if( this.character.isCollidingCoins(coin)) {
        this.character.hitCoins();
+       this.level.coins.splice(index, 1);
        this.coinsBar.setPercentage(this.character.coinsAmmount);
          console.log('Collision with Character, coinsAmmount ', this.character.coinsAmmount);
       }
@@ -134,7 +137,14 @@ class World {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
+    mo.drawFrameCharacter(this.ctx);
+    mo.drawFrameCoins(this.ctx);
+    mo.drawFrameBottles(this.ctx);
+    mo.drawFrameChicken(this.ctx);
+    mo.drawFrameEndboss(this.ctx);
+    
+    
+    
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
