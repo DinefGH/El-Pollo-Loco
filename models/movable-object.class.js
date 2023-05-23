@@ -12,10 +12,10 @@ class MovableObject extends DrawableObject {
   coinsAmmount = 0;
   lastHit = 0;
 
-  // ==> Chicken
+  // Ch ==> Chicken
   offsetCh = {
     topCh: 0,
-    bottomCh: 80,
+    bottomCh: 0,
     leftCh: 20,
     rightCh: 0,
   }
@@ -74,12 +74,21 @@ class MovableObject extends DrawableObject {
   }
 
    // character.isCollidingBottle(bottles);
+   
+    
+   
+    
+   
    isCollidingBottle(mo) {  
+    if (this.bottlesAmmount > 99) {
+
+    } else {
     return  this.x + this.width - this.offsetB.rightB > mo.x + mo.offsetB.leftB &&
             this.y +40 + this.height -50 - this.offsetB.bottomB > mo.y + mo.offsetB.topB &&
             this.x + this.offsetB.leftB < mo.x + mo.width - mo.offsetB.rightB &&
             this.y +40+ this.offsetB.topB < mo.y + mo.height -50 - mo.offsetB.bottomB;
   }
+}
 
 
   hitBottles() {

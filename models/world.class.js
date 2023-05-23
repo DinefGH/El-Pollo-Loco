@@ -10,6 +10,7 @@ class World {
   coinsBar = new CoinsBar();
   bottlesBar = new BottlesBar();
   throwableObjects = [new ThrowableObject()];
+  throwBottle = false
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -41,20 +42,31 @@ class World {
 
 
   checkThrowObjects() {
-    if(this.keyboard.SPACE && this.character.bottlesAmmount > 0 ) {
+    if(this.keyboard.SPACE && this.character.bottlesAmmount > 0 && !this.throwBottle) {
+    this.throwBottle = true
     let bottle = new ThrowableObject(this.character.x, this.character.y);
     this.throwableObjects.push(bottle)
+    this.character.bottlesAmmount -= 20
+    this.bottlesBar.setPercentage(this.character.bottlesAmmount);
+    console.log(' bottlesAmmount ', this.character.bottlesAmmount)
+    setTimeout(() => {
+      this.throwBottle= false
+    }, 500);
   }
   }
 
   checkCollisions() {
-    this.level.enemies.forEach( (enemy) => {
-      if( this.character.isCollidingChicken(enemy)) {
-       this.character.hit();
-       this.statusBar.setPercentage(this.character.energy);
-         // console.log('Collision with Character, energy ', this.character.energy);
+    this.level.enemies.forEach( (enemy, index) => {
+      if(this.character.isAboveGround() && this.character.isCollidingChicken(enemy)) {
+        this.level.enemies.splice(index, 1);
+      
+      } else if ( this.character.isCollidingChicken(enemy)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+          // console.log('Collision with Character, energy ', this.character.energy);
       }
-
+    
+      
      });
   }
 

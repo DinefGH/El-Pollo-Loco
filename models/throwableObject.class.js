@@ -7,14 +7,13 @@ class ThrowableObject extends MovableObject {
     ]
 
     currentImage = 0;
-    y = 100
     height = 60
 
-    constructor(){
+    constructor(x, y){
         super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
         this.loadImages(this.IMAGES_IDLE);
-
-        this.x = 200 + Math.random() * 2000; //Zahl zwischen 200 und 700 (random zahl zwischen 0 und 1)
+        this.x = x;
+        this.y = y+80;
         
         this.animateBottles();
         this.throw();
@@ -31,10 +30,8 @@ this.playAnimation(this.IMAGES_IDLE);
     }
 
 
-    throw(x, y) {
-        this.x = x;
-        this.y = y;
-        this.speedY = 30;
+    throw() {
+        this.speedY = 25;
         this.applyGravity();
         setInterval(() => {
             this.x += 10;
