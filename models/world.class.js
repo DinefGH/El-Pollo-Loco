@@ -63,7 +63,7 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach( (enemy, index) => {
-      if(this.character.isAboveGround() && this.character.isCollidingChicken(enemy)) {
+      if(this.character.isAboveGround() && this.character.isCollidingChicken(enemy) && this.character.speedY < 0) {
         this.level.enemies.splice(index, 1);
       
       } else if ( this.character.isCollidingChicken(enemy)) {
