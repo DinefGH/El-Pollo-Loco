@@ -9,7 +9,9 @@ class World {
   statusBar = new StatusBar();
   coinsBar = new CoinsBar();
   bottlesBar = new BottlesBar();
+  // endBossBar = new EndbossBar();f
   throwableObjects = [new ThrowableObject()];
+  throwableBottles = new ThrowableObject();
   throwBottle = false
 
   constructor(canvas) {
@@ -26,6 +28,8 @@ class World {
     this.statusBar.world = this;
     this.coinsBar.world = this;
     this.bottlesBar.world = this;
+    // this.endBossBar.world = this;
+    
   }
 
   run() {
@@ -35,6 +39,8 @@ class World {
       this.checkCollisionsBottles();
       this.checkCollisionsCoins();
       this.checkThrowObjects();
+      this.checkCollisionsThrowBottle();
+      this.checkCollisionsEndboss();
 
     }, 100);
 
@@ -69,6 +75,28 @@ class World {
       
      });
   }
+
+
+  checkCollisionsEndboss() {
+    this.level.endboss.forEach((bosschicken) => {
+      if ( this.character.isCollidingChicken(bosschicken)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+    }
+  });
+  }
+
+
+  checkCollisionsThrowBottle() {
+    this.throwableObjects.forEach( ( bottle) => {
+      this.level.enemies.forEach( ( enemy, index) =>{
+      if (bottle.isCollidingChicken(enemy)) {
+        this.level.enemies.splice(index, 1);
+        
+    }
+  });
+});
+}
 
 
   checkCollisionsBottles() {
@@ -121,6 +149,7 @@ class World {
     
 
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
     this.addObjectsToMap(this.throwableObjects);
