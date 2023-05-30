@@ -1,5 +1,7 @@
 class World {
   character = new Character();
+  endboss = new Endboss();
+
 
   level = level1;
   canvas;
@@ -9,10 +11,17 @@ class World {
   statusBar = new StatusBar();
   coinsBar = new CoinsBar();
   bottlesBar = new BottlesBar();
+  statusBarEndboss = new StatusBarEndboss();
+  endbossIcon = new EndbossIcon();
+  hadFirstContact = true
+
+
   // endBossBar = new EndbossBar();f
   throwableObjects = [new ThrowableObject()];
   throwableBottles = new ThrowableObject();
   throwBottle = false
+  throwBottleS = false
+  
 
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
@@ -25,9 +34,12 @@ class World {
 
   setWorld() {
     this.character.world = this;
+    this.endboss.world = this;
     this.statusBar.world = this;
     this.coinsBar.world = this;
     this.bottlesBar.world = this;
+    this.statusBarEndboss.world = this;
+    this.endbossIcon.world = this;
     // this.endBossBar.world = this;
     
   }
@@ -41,7 +53,7 @@ class World {
       this.checkThrowObjects();
       this.checkCollisionsThrowBottle();
       this.checkCollisionsEndboss();
-
+      this.checkCollisionsThrowBottleEndboss();
     }, 100);
 
   }
@@ -78,13 +90,28 @@ class World {
 
 
   checkCollisionsEndboss() {
-    this.level.endboss.forEach((bosschicken) => {
-      if ( this.character.isCollidingChicken(bosschicken)) {
+      if ( this.character.isCollidingChicken(this.endboss)) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
     }
-  });
   }
+
+
+
+  checkCollisionsThrowBottleEndboss() {
+    this.throwableObjects.forEach( ( bottle, index) => {
+      if (bottle.isCollidingEndboss(this.endboss)) {
+        this.endboss.hitEndboss();
+        bottle.hitEnemy = true
+        this.statusBarEndboss.setPercentage(this.endboss.energy);
+        // setTimeout (
+        // this.throwableObjects.splice(index, 1),
+        // 1000);
+        console.log('Energy:', this.endboss.energy)
+    }
+});
+}
+
 
 
   checkCollisionsThrowBottle() {
@@ -135,8 +162,23 @@ class World {
     // Space for fixed objects 
     this.addToMap(this.statusBar);
     this.ctx.translate(this.camera_x, 0); // Forwards
-
     
+    if (this.character.x > 2250 || !this.hadFirstContact) {
+      this.hadFirstContact = false
+    this.ctx.translate(-this.camera_x, 0); // Back
+    // Space for fixed objects 
+    this.addToMap(this.statusBarEndboss);
+    this.ctx.translate(this.camera_x, 0); // Forwards
+    }
+
+    if (this.character.x > 2250 || !this.hadFirstContact) {
+      this.hadFirstContact = false
+    this.ctx.translate(-this.camera_x, 0); // Back
+    // Space for fixed objects 
+    this.addToMap(this.endbossIcon);
+    this.ctx.translate(this.camera_x, 0); // Forwards
+  }
+
     this.ctx.translate(-this.camera_x, 0); // Back
     // Space for fixed objects 
     this.addToMap(this.coinsBar);
@@ -149,12 +191,13 @@ class World {
     
 
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.bottles);
-    this.addObjectsToMap(this.throwableObjects);
+    
 
     this.addToMap(this.character);
+    this.addToMap(this.endboss);
+    this.addObjectsToMap(this.throwableObjects);
 
 
     this.ctx.translate(-this.camera_x, 0);
