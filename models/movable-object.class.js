@@ -199,6 +199,23 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {
+    if(this.coinsAmmount  < 1) {
     this.speedY = 25;
   }
+  else if(this.coinsAmmount  == 20 ) {
+    this.speedY = 26;
+  }
+  else if(this.coinsAmmount  == 40 ) {
+    this.speedY = 27;
+  }
+  else if(this.coinsAmmount  == 60 ) {
+    this.speedY = 28;
+  }
+  else if(this.coinsAmmount  == 80) {
+    this.speedY = 29;
+  }
+  else if(this.coinsAmmount  == 100) {
+    this.speedY = 30;
+  }
+}
 }

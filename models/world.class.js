@@ -13,7 +13,8 @@ class World {
   bottlesBar = new BottlesBar();
   statusBarEndboss = new StatusBarEndboss();
   endbossIcon = new EndbossIcon();
-  hadFirstContact = true
+  hadFirstContact = true;
+  hitBossChicken = false;
 
 
   // endBossBar = new EndbossBar();f
@@ -76,7 +77,11 @@ class World {
   checkCollisions() {
     this.level.enemies.forEach( (enemy, index) => {
       if(this.character.isAboveGround() && this.character.isCollidingChicken(enemy) && this.character.speedY < 0) {
-        this.level.enemies.splice(index, 1);
+        enemy.hitChicken = true
+        setTimeout(() => {
+          this.level.enemies.splice(index, 1);
+        }, 50);
+        
       
       } else if ( this.character.isCollidingChicken(enemy)) {
         this.character.hit();
@@ -90,10 +95,22 @@ class World {
 
 
   checkCollisionsEndboss() {
-      if ( this.character.isCollidingChicken(this.endboss)) {
-        this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
-    }
+    this.level.enemies.forEach( (enemy) => {
+    if(this.character.isAboveGround() && this.character.isCollidingChicken(this.endboss) && this.character.speedY < 0) {
+      this.character.hit();
+      enemy.hitEndbossChicken = true
+      enemy.hitBossChicken = true
+      this.statusBar.setPercentage(this.endboss.energy = 0);
+
+    }else {
+      if (this.hitChickenBoss) {
+      
+  } else if ( this.character.isCollidingChicken(this.endboss)) {
+    this.character.hit();
+    this.statusBar.setPercentage(this.character.energy);
+  }
+  }
+});
   }
 
 
@@ -104,9 +121,6 @@ class World {
         this.endboss.hitEndboss();
         bottle.hitEnemy = true
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        // setTimeout (
-        // this.throwableObjects.splice(index, 1),
-        // 1000);
         console.log('Energy:', this.endboss.energy)
     }
 });
@@ -118,6 +132,7 @@ class World {
     this.throwableObjects.forEach( ( bottle) => {
       this.level.enemies.forEach( ( enemy, index) =>{
       if (bottle.isCollidingChicken(enemy)) {
+        bottle.hitEnemy = true
         this.level.enemies.splice(index, 1);
         
     }
@@ -149,6 +164,10 @@ class World {
       }
 
      });
+  }
+
+  hitChickenBoss () {
+   return this.hitBossChicken
   }
 
   draw() {

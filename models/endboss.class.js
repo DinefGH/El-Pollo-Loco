@@ -34,6 +34,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png',
     ];
     currentImage = 0;
+    hitEndbossChicken = false
     height = 350;
     width = 350;
     y = 95;
@@ -51,7 +52,7 @@ class Endboss extends MovableObject {
 
     animateEndboss() {
         setInterval(() => {
-if(this.isDead() && this.isAboveGround()) {
+if(this.isDead() && this.isAboveGround() ||this.isDead() && this.hitChickenEndboss()) {
     this.y  -300;
     this.playAnimation(this.IMAGES_ENDBOSS_DEAD);
   } else if (this.isHurt()) {
@@ -64,4 +65,8 @@ if(this.isDead() && this.isAboveGround()) {
 
     }
     
+
+    hitChickenEndboss() {
+        return this.hitEndbossChicken;
+    }
 }
