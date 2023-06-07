@@ -149,10 +149,9 @@ class World {
        this.bottlesBar.setPercentage(this.character.bottlesAmmount);
          console.log('Collision with Character, bottlesAmmount ', this.character.bottlesAmmount);
       }
-
      });
-
   }
+
 
   checkCollisionsCoins() {
     this.level.coins.forEach( (coin, index) => {
@@ -162,13 +161,14 @@ class World {
        this.coinsBar.setPercentage(this.character.coinsAmmount);
          console.log('Collision with Character, coinsAmmount ', this.character.coinsAmmount);
       }
-
      });
   }
+
 
   hitChickenBoss () {
    return this.hitBossChicken
   }
+
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -228,11 +228,13 @@ class World {
     });
   }
 
+
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
+
 
   addToMap(mo) {
     //mo = movable Object
@@ -245,8 +247,6 @@ class World {
     mo.drawFrameBottles(this.ctx);
     mo.drawFrameChicken(this.ctx);
     mo.drawFrameEndboss(this.ctx);
-    
-    
     
 
     if (mo.otherDirection) {
@@ -262,6 +262,7 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();

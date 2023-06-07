@@ -1,6 +1,11 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let imagesToLoad = 0;
+let imagesLoaded = 0;
+let percent = 0;
+
+
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -8,9 +13,9 @@ function init() {
 
 
     console.log('My Character is', world.character);
-
-
 }
+
+
 
 
 window.addEventListener("keydown", (e) => {
@@ -48,3 +53,7 @@ window.addEventListener("keyup", (e) => {
         keyboard.SPACE = false
     }
 });
+
+
+
+

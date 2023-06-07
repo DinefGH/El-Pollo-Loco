@@ -1,17 +1,26 @@
 class DrawableObject {
-    x = 120;
+   
+  x = 120;
     y = 275;
     height = 150;
     width = 100;
     img;
     imageCache = {};
     currentImage = 0;
+    imagesToLoad = 0;
+ 
 
-// loadImage('img/test.png');
-loadImage(path) {
-    this.img = new Image(); //this.img = document.getElementById('image') <img id='image' src="">
-    this.img.src = path;
+
+    loadImage(path) {
+        imagesToLoad++;
+        this.img = new Image();
+        this.img.onload = () => {
+            imagesLoaded++;
+      let percent = (imagesLoaded / imagesToLoad) * 100;
+      console.log(`${percent} loaded`);
   }
+  this.img.src = path;
+}
 
   draw(ctx) {
     try {
