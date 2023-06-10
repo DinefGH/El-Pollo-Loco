@@ -1,9 +1,6 @@
-let canvas;
-let world;
+
 let keyboard = new Keyboard();
-let imagesToLoad = 0;
-let imagesLoaded = 0;
-let percent = 0;
+
 
 
 

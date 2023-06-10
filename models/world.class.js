@@ -41,7 +41,7 @@ class World {
     this.bottlesBar.world = this;
     this.statusBarEndboss.world = this;
     this.endbossIcon.world = this;
-    // this.endBossBar.world = this;
+
     
   }
 
@@ -70,7 +70,7 @@ class World {
     console.log(' bottlesAmmount ', this.character.bottlesAmmount)
     setTimeout(() => {
       this.throwBottle= false
-    }, 500);
+    }, 2500);
   }
   }
 
@@ -97,19 +97,21 @@ class World {
   checkCollisionsEndboss() {
     this.level.enemies.forEach( (enemy) => {
     if(this.character.isAboveGround() && this.character.isCollidingChicken(this.endboss) && this.character.speedY < 0) {
-      this.character.hit();
+      // this.character.hitEndbossAbove()
       enemy.hitEndbossChicken = true
       enemy.hitBossChicken = true
-      this.statusBar.setPercentage(this.endboss.energy = 0);
+      this.statusBarEndboss.setPercentage(this.endboss.energy = 0);
 
-    }else {
-      if (this.hitChickenBoss) {
+    // }else {
+    //   if (this.hitChickenBoss) {
       
   } else if ( this.character.isCollidingChicken(this.endboss)) {
     this.character.hit();
+    enemy.EndbossChickenHit = false
     this.statusBar.setPercentage(this.character.energy);
+    console.log('endbossCh Energy', this.character.energy, this.endboss.energy)
   }
-  }
+  
 });
   }
 
@@ -214,8 +216,10 @@ class World {
     this.addObjectsToMap(this.level.bottles);
     
 
+    
     this.addToMap(this.character);
     this.addToMap(this.endboss);
+    
     this.addObjectsToMap(this.throwableObjects);
 
 

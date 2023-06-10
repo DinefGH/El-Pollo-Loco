@@ -21,12 +21,20 @@ class MovableObject extends DrawableObject {
     rightCh: 0,
   }
 
- // E ==> Endboss
+ // E ==> EndbossBottle
    offsetE = {
     topE: 80,
     bottomE: 0,
     leftE: 20,
     rightE: 0,
+  }
+
+  // E ==> EndbossCharacter
+  offsetEnd = {
+    topEnd: 0,
+    bottomEnd: 0,
+    leftEnd: 20,
+    rightEnd: 0,
   }
 
 
@@ -94,6 +102,16 @@ class MovableObject extends DrawableObject {
             this.y + this.offsetCh.topCh < mo.y + mo.height - mo.offsetCh.bottomCh;
   }
 
+ // character.isCollidingChicken(chicken);
+ isCollidingEndbossCharacter(mo) {  
+  return  this.x + this.width - this.offsetEnd.rightEnd > mo.x + mo.offsetEnd.leftEnd &&
+          this.y + this.height - this.offsetE.bottomEnd > mo.y + mo.offsetEnd.topEnd &&
+          this.x + this.offsetEnd.leftEnd < mo.x + mo.width - mo.offsetEnd.rightEnd &&
+          this.y + this.offsetEnd.topEnd < mo.y + mo.height - mo.offsetE.bottomEnd;
+}
+
+
+
   // character.isCollidingChicken(chicken);
   isCollidingEndboss(mo) {  
     return  this.x + this.width - this.offsetE.rightE > mo.x + mo.offsetE.leftE &&
@@ -148,6 +166,15 @@ class MovableObject extends DrawableObject {
 
   hit() {
     this.energy -= 5;
+    if(this.energy < 0) {
+      this.energy = 0;
+    } else { 
+      this.lastHit = new Date().getTime();
+    }
+  }
+
+  hitEndbossAbove() {
+    this.energy -= 1;
     if(this.energy < 0) {
       this.energy = 0;
     } else { 
