@@ -30,7 +30,7 @@ class ThrowableObject extends MovableObject {
         
         this.animateBottles();
         this.throw();
-        console.log(this.x);
+        console.log('bottle x', this.x);
     }
 
 

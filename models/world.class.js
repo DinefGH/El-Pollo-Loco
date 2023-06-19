@@ -13,11 +13,12 @@ class World {
   bottlesBar = new BottlesBar();
   statusBarEndboss = new StatusBarEndboss();
   endbossIcon = new EndbossIcon();
+  screen = new Screen();
   hadFirstContact = true;
   hitBossChicken = false;
 
 
-  // endBossBar = new EndbossBar();f
+  // endBossBar = new EndbossBar();
   throwableObjects = [new ThrowableObject()];
   throwableBottles = new ThrowableObject();
   throwBottle = false
@@ -41,9 +42,10 @@ class World {
     this.bottlesBar.world = this;
     this.statusBarEndboss.world = this;
     this.endbossIcon.world = this;
-
-    
   }
+
+  
+
 
   run() {
     setInterval(() => {
@@ -175,6 +177,8 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+
+
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
@@ -221,6 +225,16 @@ class World {
     this.addToMap(this.endboss);
     
     this.addObjectsToMap(this.throwableObjects);
+
+    
+    
+
+    if (this.endboss.energy < 1 && this.endboss.y > 500) {
+      this.ctx.translate(-this.camera_x, 0); 
+          this.addToMap(this.screen);
+          this.ctx.translate(this.camera_x, 0);
+    }
+   
 
 
     this.ctx.translate(-this.camera_x, 0);
