@@ -6,6 +6,18 @@ body {
     margin: 0;
 }
 
+.displayNone {
+    display: none !important;
+}
+
+.closeButton {
+    position: relative;
+    left: 38vw;
+    top: -12vh;
+    color: #FF9600;
+    cursor: pointer;
+}
+
 .headline {
 
 }
@@ -13,6 +25,7 @@ body {
 canvas {
     background-color: black;
     display: block;
+
 }
 
 .buttonDescreption {
@@ -21,6 +34,43 @@ canvas {
     justify-content: space-between;
     font-weight: bold;
 }
+
+.startScreen {
+height: 100vh;
+width: 100%;
+z-index: 1;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+.buttonContainer {
+    position: relative;
+    z-index: 2;
+    top: 50vh;
+}
+
+.startButton {
+    cursor: pointer;
+}
+
+.infoButton {
+    cursor: pointer;
+}
+
+.infoContainer {
+    position: relative;
+    top: 35vh;
+    z-index: 3;
+    color: #ffc068;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 30vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 /* Smartphones */

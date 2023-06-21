@@ -7,10 +7,31 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
+        // for (let i = 1; i < 9999; i++) window.clearInterval(i);  
     console.log('My Character is', world.character);
 }
+
+
+  
+
+   function startGame() {
+    document.getElementById('startScreenContainer').classList.add('displayNone');
+    document.getElementById('canvas').classList.remove('displayNone');
+    // for (let i = 1; i < 9999; i++) window.setInterval(i);
+   }
+
+   function startInfo() {
+    document.getElementById('infoContainer').classList.remove('displayNone');
+    document.getElementById('startButton').classList.add('displayNone');
+    document.getElementById('infoButton').classList.add('displayNone');
+   }
+
+   function closeInfo() {
+    document.getElementById('infoContainer').classList.add('displayNone');
+    document.getElementById('startButton').classList.remove('displayNone');
+    document.getElementById('infoButton').classList.remove('displayNone');
+   }
+
 
 
 

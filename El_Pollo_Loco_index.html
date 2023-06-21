@@ -40,11 +40,34 @@
             rotate your device
         </div> -->
         
+        <div  class="startScreenContainer" id="startScreenContainer">
+            <img class="startScreen" id="startScreen" src="img/5_background/first_half_background.png">
+            
+            <div class="buttonContainer">
+            <img class="startButton" id="startButton" onclick="startGame()" src="img/9_intro_outro_screens/start/BTN_Start.png">
+            <img class="infoButton" id="infoButton" onclick="startInfo()" src="img/9_intro_outro_screens/start/BTN_Info.png">
+            </div>
+        </div>
+
+        <div class="infoContainer displayNone" id="infoContainer">
+
+            <img class="closeButton" onclick="closeInfo()" src="img/9_intro_outro_screens/start/closeButton.svg">
+           <div class="infoText">
+            move left ==> A <br>
+            move right ==> D<br>
+            jump ==> W<br>
+            throw Bottle ==> Space<br>
+            collect coins for higher jump<br>
+            collect bottles and throw them on enemies to kill them<br>
+            you can kill enemies when you jump on them
+            </div>
+        </div>
+
     </div>
     <h1 class="headline">El Pollo Loco
     </h1>
 
-    <canvas id="canvas" width="720" height="480">
+    <canvas class="displayNone" id="canvas" width="720" height="480">
     
     </canvas>
 
