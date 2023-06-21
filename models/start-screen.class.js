@@ -1,7 +1,7 @@
-class Screen extends DrawableObject {
+class Startscreen extends DrawableObject {
 
-    IMAGES_SCREEN = [
-        'img/5_background/blackscreen.png'
+    IMAGES_STARTSCREEN = [
+        'img/9_intro_outro_screens/start/startscreen_2.png'
         ];
         y = 0
         x = 0
@@ -9,7 +9,7 @@ class Screen extends DrawableObject {
         width = 720
 
 constructor(x, y){
-    super().loadImage(this.IMAGES_SCREEN)
+    super().loadImage(this.IMAGES_STARTSCREEN)
 }
 
 }

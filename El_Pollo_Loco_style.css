@@ -3,10 +3,16 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: rgb(255, 150, 0);
+    margin: 0;
+}
+
+.headline {
+
 }
 
 canvas {
     background-color: black;
+    display: block;
 }
 
 .buttonDescreption {
@@ -15,3 +21,33 @@ canvas {
     justify-content: space-between;
     font-weight: bold;
 }
+
+
+/* Smartphones */
+@media only screen and ( max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .buttonDescreption {
+        width: 100%;
+    }
+
+}
+
+/* Smartphones */
+@media only screen and ( max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .headline {
+        display: none;
+    }
+
+    .buttonDescreption {
+        width: 100%;
+        display: none;
+    }
+}
+

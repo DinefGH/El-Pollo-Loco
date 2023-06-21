@@ -14,6 +14,9 @@ class World {
   statusBarEndboss = new StatusBarEndboss();
   endbossIcon = new EndbossIcon();
   screen = new Screen();
+  loose = new Loose();
+  win = new Win();
+  startscreen = new Startscreen();
   hadFirstContact = true;
   hitBossChicken = false;
 
@@ -179,6 +182,9 @@ class World {
 
 
 
+if (this.startgame = true) {
+  
+
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.clouds);
@@ -232,9 +238,24 @@ class World {
     if (this.endboss.energy < 1 && this.endboss.y > 500) {
       this.ctx.translate(-this.camera_x, 0); 
           this.addToMap(this.screen);
+          this.addToMap(this.win);
           this.ctx.translate(this.camera_x, 0);
     }
    
+    if (this.character.energy < 1 && this.character.y > 500) {
+      this.ctx.translate(-this.camera_x, 0); 
+          this.addToMap(this.screen);
+          this.addToMap(this.loose);
+          this.ctx.translate(this.camera_x, 0);
+    }
+  }
+   
+  else {
+  this.ctx.translate(-this.camera_x, 0); 
+  this.addToMap(this.startscreen);
+  this.ctx.translate(this.camera_x, 0);
+
+}
 
 
     this.ctx.translate(-this.camera_x, 0);

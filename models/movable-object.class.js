@@ -207,25 +207,34 @@ class MovableObject extends DrawableObject {
 
   
 
-  playAnimation(images) {
+  
+    
+   playAnimation(images) {
+    if (startgame = true) {
     let i = this.currentImage % images.length; //let i = 0 % 6; =>0, Rest 0 |...| let i = 7 % 6; => 1, Rest 1
     //i = 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, ....
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
   }
+}
 
   moveRight() {
+    if (startgame = true) {
     this.x += this.speed;
     this.otherDirection = false;
   }
+}
 
   moveLeft() {
+    if (startgame = true) {
     this.x -= this.speed;
     this.otherDirection = true;
   }
+  }
 
   jump() {
+    if (startgame = true) {
     if(this.coinsAmmount  < 1) {
     this.speedY = 25;
   }
@@ -244,5 +253,6 @@ class MovableObject extends DrawableObject {
   else if(this.coinsAmmount  == 100) {
     this.speedY = 30;
   }
+}
 }
 }
