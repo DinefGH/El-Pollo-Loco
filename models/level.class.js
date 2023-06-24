@@ -1,4 +1,8 @@
 class Level {
+  /**
+   * Initials the level.
+   * 
+   */
   enemies;
   clouds;
   bottles;

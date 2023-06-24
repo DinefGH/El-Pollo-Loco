@@ -1,4 +1,9 @@
 class Endboss extends MovableObject {
+  /**
+  * Initials the endboss.
+  * 
+  */
+
   IMAGES_ENDBOSS_WALK = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
     "img/4_enemie_boss_chicken/1_walk/G2.png",
@@ -59,46 +64,91 @@ class Endboss extends MovableObject {
     this.animateEndboss();
   }
 
+
+  /**
+  * Animate the endboss.
+  * 
+  */
   animateEndboss() {
     setInterval(() => {
-      if (
-        (this.isDead() && this.isAboveGround()) ||
-        (this.isDead() && this.hitChickenEndboss())
-      ) {
-        this.y - 300;
-        this.playAnimation(this.IMAGES_ENDBOSS_DEAD);
+      if ((this.isDead() && this.isAboveGround()) || (this.isDead() && this.hitChickenEndboss())) {
+        this.playEndbossDead();
       } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_ENDBOSS_HURT);
-        setTimeout(() => {
-          let endbossAttackID = setInterval(() => {
-            this.moveLeft();
-            this.otherDirection = false;
-            this.playAnimation(this.IMAGES_ENDBOSS_ATTACK);
-          }, 1000 / 5);
-          console.log("ID von setintervalAttack:", endbossAttackID);
-          setTimeout(() => {
-            clearInterval(endbossAttackID);
-          }, 1000);
-        }, 1500);
-
-        setTimeout(() => {
-          let endbossWalkID = setInterval(() => {
-            this.moveLeft();
-            this.otherDirection = false;
-            this.playAnimation(this.IMAGES_ENDBOSS_WALK);
-          }, 1000 / 5);
-          console.log("ID von setinterval:", endbossWalkID);
-          setTimeout(() => {
-            clearInterval(endbossWalkID);
-          }, 1000);
-        }, 500);
+        this.playEndbossHurt();
       } else this.playAnimation(this.IMAGES_IDLE);
     }, 1000 / 2);
   }
 
+
+  /**
+  * play the dead animation.
+  * 
+  *@param {array}  IMAGES_ENDBOSS_DEAD- The array of the dead Endboss.  
+  */
+  playEndbossDead() {
+    this.y - 300;
+    this.playAnimation(this.IMAGES_ENDBOSS_DEAD);
+  }
+
+
+  /**
+   * play the hurt animation.
+   * 
+  * @param {array}  IMAGES_ENDBOSS_HURT- The array of the hurt Endboss.  
+   */
+  playEndbossHurt() {
+    this.playAnimation(this.IMAGES_ENDBOSS_HURT);
+    this.endbossAttack();
+    this.endbossWalk();
+  }
+
+
+  /**
+   * play the attack animation.
+   * 
+  * @param {array}  IMAGES_ENDBOSS_ATTACK- The array of the attacking Endboss.  
+   */
+  endbossAttack() {
+    setTimeout(() => {
+      let endbossAttackID = setInterval(() => {
+        this.moveLeft();
+        this.otherDirection = false;
+        this.playAnimation(this.IMAGES_ENDBOSS_ATTACK);
+      }, 1000 / 5);
+      console.log("ID von setintervalAttack:", endbossAttackID);
+      setTimeout(() => {
+        clearInterval(endbossAttackID);
+      }, 1000);
+    }, 1500);
+  }
+
+
+  /**
+  * play the walk animation.
+  * 
+  * @param {array}  IMAGES_ENDBOSS_ATTACK- The array of the walking Endboss.  
+  */
+  endbossWalk() {
+    setTimeout(() => {
+      let endbossWalkID = setInterval(() => {
+        this.moveLeft();
+        this.otherDirection = false;
+        this.playAnimation(this.IMAGES_ENDBOSS_WALK);
+      }, 1000 / 5);
+      console.log("ID von setinterval:", endbossWalkID);
+      setTimeout(() => {
+        clearInterval(endbossWalkID);
+      }, 1000);
+    }, 500);
+  }
+
+
+
   hitChickenEndboss() {
     return this.hitEndbossChicken;
   }
+
+
   endbossStartWalk() {
     return this.endbossWalkStart;
   }

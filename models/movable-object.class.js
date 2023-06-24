@@ -1,6 +1,5 @@
 class MovableObject extends DrawableObject {
   speed = 0.15;
-
   otherDirection = false;
   speedY = 0;
   accelerationEndboss = 0.1;
@@ -10,6 +9,7 @@ class MovableObject extends DrawableObject {
   coinsAmmount = 0;
   lastHit = 0;
 
+
   // Ch ==> Chicken
   offsetCh = {
     topCh: 0,
@@ -17,6 +17,7 @@ class MovableObject extends DrawableObject {
     leftCh: 20,
     rightCh: 0,
   };
+
 
   // E ==> EndbossBottle
   offsetE = {
@@ -26,6 +27,7 @@ class MovableObject extends DrawableObject {
     rightE: 0,
   };
 
+
   // E ==> EndbossCharacter
   offsetEnd = {
     topEnd: 0,
@@ -33,6 +35,7 @@ class MovableObject extends DrawableObject {
     leftEnd: 20,
     rightEnd: 0,
   };
+
 
   // C ==> Coins
   offsetC = {
@@ -42,6 +45,7 @@ class MovableObject extends DrawableObject {
     rightC: 0,
   };
 
+
   // B ==> Bottles
   offsetB = {
     topB: 0,
@@ -50,6 +54,11 @@ class MovableObject extends DrawableObject {
     rightB: 0,
   };
 
+
+  /**
+   * apply the gravity of the character.
+   *   
+   */
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -59,6 +68,10 @@ class MovableObject extends DrawableObject {
     }, 1000 / 25);
   }
 
+  /**
+   * apply the gravity of the endboss.
+   *   
+   */
   applyGravityEndboss() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -67,6 +80,8 @@ class MovableObject extends DrawableObject {
       }
     }, 1000 / 25);
   }
+
+
 
   isAboveGround() {
     if (this instanceof ThrowableObject) {
@@ -85,31 +100,43 @@ class MovableObject extends DrawableObject {
     }
   }
 
-  // character.isCollidingChicken(chicken);
+
+  /**
+ * character.isCollidingChicken(chicken)
+ *   
+ */
   isCollidingChicken(mo) {
     return (
       this.x + this.width - this.offsetCh.rightCh > mo.x + mo.offsetCh.leftCh &&
       this.y + this.height - this.offsetCh.bottomCh >
-        mo.y + mo.offsetCh.topCh &&
+      mo.y + mo.offsetCh.topCh &&
       this.x + this.offsetCh.leftCh < mo.x + mo.width - mo.offsetCh.rightCh &&
       this.y + this.offsetCh.topCh < mo.y + mo.height - mo.offsetCh.bottomCh
     );
   }
 
-  // character.isCollidingChicken(chicken);
+
+  /**
+  *character.isCollidingEndboss(endboss)
+  *   
+  */
   isCollidingEndbossCharacter(mo) {
     return (
       this.x + this.width - this.offsetEnd.rightEnd >
-        mo.x + mo.offsetEnd.leftEnd &&
+      mo.x + mo.offsetEnd.leftEnd &&
       this.y + this.height - this.offsetE.bottomEnd >
-        mo.y + mo.offsetEnd.topEnd &&
+      mo.y + mo.offsetEnd.topEnd &&
       this.x + this.offsetEnd.leftEnd <
-        mo.x + mo.width - mo.offsetEnd.rightEnd &&
+      mo.x + mo.width - mo.offsetEnd.rightEnd &&
       this.y + this.offsetEnd.topEnd < mo.y + mo.height - mo.offsetE.bottomEnd
     );
   }
 
-  // character.isCollidingChicken(chicken);
+
+  /**
+  *character.isCollidingEndboss(endboss)
+  *   
+  */
   isCollidingEndboss(mo) {
     return (
       this.x + this.width - this.offsetE.rightE > mo.x + mo.offsetE.leftE &&
@@ -119,33 +146,41 @@ class MovableObject extends DrawableObject {
     );
   }
 
-  // character.isCollidingCoins(coins);
+
+  /**
+ * // character.isCollidingCoins(coins)
+ *   
+ */
   isCollidingCoins(mo) {
     return (
       this.x + this.width - this.offsetC.rightC > mo.x + mo.offsetC.leftC &&
       this.y + 40 + this.height - 50 - this.offsetC.bottomC >
-        mo.y + mo.offsetC.topC &&
+      mo.y + mo.offsetC.topC &&
       this.x + this.offsetC.leftC < mo.x + mo.width - mo.offsetC.rightC &&
       this.y + 40 + this.offsetC.topC <
-        mo.y + mo.height - 50 - mo.offsetC.bottomC
+      mo.y + mo.height - 50 - mo.offsetC.bottomC
     );
   }
 
-  // character.isCollidingBottle(bottles);
 
+  /**
+ * character.isCollidingBottle(bottles)
+ *   
+ */
   isCollidingBottle(mo) {
     if (this.bottlesAmmount > 99) {
     } else {
       return (
         this.x + this.width - this.offsetB.rightB > mo.x + mo.offsetB.leftB &&
         this.y + 40 + this.height - 50 - this.offsetB.bottomB >
-          mo.y + mo.offsetB.topB &&
+        mo.y + mo.offsetB.topB &&
         this.x + this.offsetB.leftB < mo.x + mo.width - mo.offsetB.rightB &&
         this.y + 40 + this.offsetB.topB <
-          mo.y + mo.height - 50 - mo.offsetB.bottomB
+        mo.y + mo.height - 50 - mo.offsetB.bottomB
       );
     }
   }
+
 
   hitBottles() {
     this.bottlesAmmount += 20;
@@ -189,15 +224,18 @@ class MovableObject extends DrawableObject {
     }
   }
 
+
   isHurt() {
     let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
     timePassed = timePassed / 1000;
     return timePassed < 0.8;
   }
 
+
   isDead() {
     return this.energy == 0;
   }
+
 
   playAnimation(images) {
     let i = this.currentImage % images.length; //let i = 0 % 6; =>0, Rest 0 |...| let i = 7 % 6; => 1, Rest 1
@@ -212,10 +250,12 @@ class MovableObject extends DrawableObject {
     this.otherDirection = false;
   }
 
+
   moveLeft() {
     this.x -= this.speed;
     this.otherDirection = true;
   }
+
 
   jump() {
     if (this.coinsAmmount < 1) {

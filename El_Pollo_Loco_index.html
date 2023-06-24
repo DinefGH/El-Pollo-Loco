@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="El_Pollo_Loco_style.css">
     <link rel="stylesheet" href="button_style.css">
-
     <script src="javaScript/variables.js"></script>
     <script src="models/draw-frames.class.js"></script>
     <script src="models/drawable-object.class.js"></script>
-    
     <script src="models/start-screen.class.js"></script>
     <script src="models/screen.class.js"></script>
     <script src="models/loose.class.js"></script>
@@ -34,35 +32,19 @@
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="javaScript/porgressBar.js"></script>
     <script src="javaScript/El_Polo_Loco_JavaScript.js"></script>
     <link rel="icon" type="image/x-icon" href="img/2_character_pepe/1_idle/idle/I-1.png">
     <title>El Pollo Loco</title>
     <style>
         @font-face {
-    font-family: 'zabars';
-    src:url(fonts/Zabars.ttf) format('truetype') ;
-}
+            font-family: 'zabars';
+            src: url(fonts/Zabars.ttf) format('truetype');
+        }
     </style>
 </head>
 
 <body onload="">
-    <!-- <div class="rotateContainer">
-        <div class="rotate">
-            rotate your device
-        </div> -->
-
-    <button class="btn displayNone" id="btn" type="button" onclick="restartGame()">
-        <strong>RESTART</strong>
-        <div id="container-stars">
-            <div id="stars"></div>
-        </div>
-
-        <div id="glow">
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </div>
-    </button>
-
     <div class="startScreenContainer" id="startScreenContainer">
         <img class="startScreen" id="startScreen" src="img/5_background/first_half_background.png">
 
@@ -116,15 +98,25 @@
         </div>
     </div>
 
-
     </div>
     <h1 class="headline">El Pollo Loco
     </h1>
 
-    <canvas class="displayNone" id="canvas" width="720" height="480">
+    <canvas class="displayNone" id="canvas" width="720" height="480"></canvas>
 
-    </canvas>
-    <div class="mobileButtonContainer">
+    <button class="btn displayNone" id="btn" type="button" onclick="restartGame()">
+        <strong>RESTART</strong>
+        <div id="container-stars">
+            <div id="stars"></div>
+        </div>
+
+        <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </button>
+
+    <div class="mobileButtonContainer" id="mobileButtonContainer">
         <div class="mobileButtonLeft">
             <div class="mobileButton" id="buttonLeft"><img src="img/buttons/arrow_back.svg"></div>
             <div class="mobileButton" id="buttonRight"><img src="img/buttons/arrow_forward.svg"></div>
@@ -135,7 +127,7 @@
         </div>
     </div>
 
-    <div class="buttonDescription">
+    <div class="buttonDescription displayNone" id="buttonDescription">
         <div>Left ==> A</div>
         <div>Right ==> D</div>
         <div>Jump ==> W</div>

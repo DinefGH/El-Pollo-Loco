@@ -1,4 +1,8 @@
 class Screen extends DrawableObject {
+  /**
+   * Initials the blackscreen.
+   * 
+   */
   IMAGES_SCREEN = ["img/5_background/blackscreen.png"];
   y = 0;
   x = 0;

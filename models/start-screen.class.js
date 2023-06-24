@@ -1,4 +1,8 @@
 class Startscreen extends DrawableObject {
+  /**
+   * Initials the startscreen.
+   * 
+   */
   IMAGES_STARTSCREEN = ["img/9_intro_outro_screens/start/startscreen_2.png"];
   y = 0;
   x = 0;

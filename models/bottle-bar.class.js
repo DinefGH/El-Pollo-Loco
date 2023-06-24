@@ -1,4 +1,9 @@
 class BottlesBar extends DrawableObject {
+
+  /**
+ * Initials the bottlesbar.
+ * 
+ */
   IMAGES_BOTTLES = [
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png", // 0
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png",
@@ -28,6 +33,8 @@ class BottlesBar extends DrawableObject {
     let path = this.IMAGES_BOTTLES[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
+
+
 
   resolveImageIndex() {
     if (this.percentage == 0) {

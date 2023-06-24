@@ -1,4 +1,8 @@
 class Loose extends DrawableObject {
+  /**
+   * Initials the loose screen
+   * 
+   */
   IMAGES_LOOSE = ["img/9_intro_outro_screens/game_over/oh no you lost!.png"];
   y = 0;
   x = 0;

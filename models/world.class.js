@@ -32,6 +32,16 @@ class World {
   }
 
 
+  /**
+  * set the world
+  * @property {class}  character- class of character.  
+  * @property {class}  endboss- class of endboss.  
+  * @property {class}  statusBar- class of statusBar.  
+  * @property {class}  coinsBar- class of coinsBar.  
+  * @property {class}  bottlesBar- class of bottlesBar.  
+  * @property {class}  statusBarEndboss- class of statusBarEndboss. 
+  * @property {class}  endbossIcon- class of endbossIcon. 
+  */
   setWorld() {
     this.character.world = this;
     this.endboss.world = this;
@@ -43,6 +53,10 @@ class World {
   }
 
 
+  /**
+   *run the intervals.
+   * 
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -56,18 +70,21 @@ class World {
   }
 
 
+  /**
+   *function for throw the bottle.
+   * @property {class}  keyboard- class of EndbossIcon. 
+   * @property {class}  character- class of Character. 
+   * @property {class}  throwBottle- class of ThrowableObject.
+   * @property {class}  bottlesBar- class of Bottlesbar.
+   * 
+   */
   checkThrowObjects() {
-    if (
-      this.keyboard.SPACE &&
-      this.character.bottlesAmmount > 0 &&
-      !this.throwBottle
-    ) {
+    if (this.keyboard.SPACE && this.character.bottlesAmmount > 0 && !this.throwBottle) {
       this.throwBottle = true;
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
       this.character.bottlesAmmount -= 20;
       this.bottlesBar.setPercentage(this.character.bottlesAmmount);
-      console.log(" bottlesAmmount ", this.character.bottlesAmmount);
       setTimeout(() => {
         this.throwBottle = false;
       }, 2500);
@@ -75,13 +92,15 @@ class World {
   }
 
 
+  /**
+ *function for check collision of chicken and character, after hit the chicken from above delete the chicken.
+ * @property {class}  level- class of Level. 
+ * @property {class}  character- class of Character. 
+ * @property {class}  statusBar- class of Statusbar.
+ */
   checkCollisions() {
     this.level.enemies.forEach((enemy, index) => {
-      if (
-        this.character.isAboveGround() &&
-        this.character.isCollidingChicken(enemy) &&
-        this.character.speedY < 0
-      ) {
+      if (this.character.isAboveGround() && this.character.isCollidingChicken(enemy) && this.character.speedY < 0) {
         enemy.hitChicken = true;
         setTimeout(() => {
           this.level.enemies.splice(index, 1);
@@ -93,6 +112,14 @@ class World {
     });
   }
 
+
+  /**
+  *function for check collision of chicken and character, after hit the chicken from above delete the chicken.
+  *@property {class}  character- class of Character. 
+  *@property {class}  endboss- class of Endboss.
+  *@property {class}  statusBar- class of Statusbar.
+  *@property {class}  statusBarEndboss- class of StatusBarEndboss.
+  */
   checkCollisionsEndboss() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isAboveGround() && this.character.isCollidingChicken(this.endboss) && this.character.speedY < 0) {
@@ -113,18 +140,29 @@ class World {
     });
   }
 
+
+  /**
+   *function for check collision of bottle and endboss, after hit the endboss set the energy.
+   * @property {class}  throwBottle- class of ThrowableObject.
+   * @property {class}  endboss- class of Endboss.
+   * @property {class}  statusBarEndboss- class of StatusBarEndboss.
+   */
   checkCollisionsThrowBottleEndboss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (bottle.isCollidingEndboss(this.endboss)) {
         this.endboss.hitEndboss();
         bottle.hitEnemy = true;
         this.statusBarEndboss.setPercentage(this.endboss.energy);
-        console.log("Energy:", this.endboss.energy);
       }
     });
   }
 
 
+  /**
+   *function for check collision of bottle and chicken, after hit the chicken delete the chicken.
+   * @property {class}  throwBottle- class of ThrowableObject.
+   * @property {class}  level- class of Level. 
+   */
   checkCollisionsThrowBottle() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy, index) => {
@@ -136,38 +174,51 @@ class World {
     });
   }
 
+
+  /**
+   *function for check collision of bottle and character, after hit the bottle increase ammount of bottles.
+   * @property {class}  level- class of Level. 
+   * @property {class}  bottlesBar- class of Bottlesbar.
+   * @property {class}  character- class of Character. 
+   */
   checkCollisionsBottles() {
     this.level.bottles.forEach((bottle, index) => {
       if (this.character.isCollidingBottle(bottle)) {
         this.character.hitBottles();
         this.level.bottles.splice(index, 1);
         this.bottlesBar.setPercentage(this.character.bottlesAmmount);
-        console.log(
-          "Collision with Character, bottlesAmmount ",
-          this.character.bottlesAmmount
-        );
       }
     });
   }
 
+
+  /**
+   *function for check collision of coins and character, after hit the bottle increase ammount of coins.
+   * @property {class}  character- class of Character.
+   * @property {class}  level- class of Level. 
+   * @property {class}  coinsbar- class of Coinsbar. 
+   */
   checkCollisionsCoins() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isCollidingCoins(coin)) {
         this.character.hitCoins();
         this.level.coins.splice(index, 1);
         this.coinsBar.setPercentage(this.character.coinsAmmount);
-        console.log(
-          "Collision with Character, coinsAmmount ",
-          this.character.coinsAmmount
-        );
       }
     });
   }
+
+
 
   hitChickenBoss() {
     return this.hitBossChicken;
   }
 
+
+  /**
+   *draws the canvas.
+   * 
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if ((this.startgame = true)) {
@@ -175,16 +226,30 @@ class World {
       this.addObjectsToMap(this.level.backgroundObjects);
       this.addObjectsToMap(this.level.clouds);
       this.ctx.translate(-this.camera_x, 0); // Back
+
       // Space for fixed objects
       this.addToMap(this.statusBar);
       this.ctx.translate(this.camera_x, 0); // Forwards
+
+
+      /**
+       * check if character is near to endboss and display the endboss statusbar
+       * 
+       */
       if (this.character.x > 2250 || !this.hadFirstContact) {
         this.hadFirstContact = false;
         this.ctx.translate(-this.camera_x, 0); // Back
+
         // Space for fixed objects
         this.addToMap(this.statusBarEndboss);
         this.ctx.translate(this.camera_x, 0); // Forwards
       }
+
+
+      /**
+       * check if character is near to endboss and display the endboss icon
+       * 
+       */
       if (this.character.x > 2250 || !this.hadFirstContact) {
         this.hadFirstContact = false;
         this.ctx.translate(-this.camera_x, 0); // Back
@@ -192,33 +257,60 @@ class World {
         this.addToMap(this.endbossIcon);
         this.ctx.translate(this.camera_x, 0); // Forwards
       }
+
       this.ctx.translate(-this.camera_x, 0); // Back
       // Space for fixed objects
       this.addToMap(this.coinsBar);
       this.ctx.translate(this.camera_x, 0); // Forwards
       this.ctx.translate(-this.camera_x, 0); // Back
+
       // Space for fixed objects
       this.addToMap(this.bottlesBar);
       this.ctx.translate(this.camera_x, 0); // Forwards
+
+      /**
+       * add the level content to the map
+       * 
+       */
       this.addObjectsToMap(this.level.enemies);
       this.addObjectsToMap(this.level.coins);
       this.addObjectsToMap(this.level.bottles);
       this.addToMap(this.character);
       this.addToMap(this.endboss);
       this.addObjectsToMap(this.throwableObjects);
+
+
+      /**
+       * check if the endboss energy is under 1 and the endboss y above 500, then show winscreen
+       * 
+       */
       if (this.endboss.energy < 1 && this.endboss.y > 500) {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.screen);
         this.addToMap(this.win);
         this.ctx.translate(this.camera_x, 0);
-        document.getElementById("btn").classList.remove("displayNone");
+        document.getElementById("buttonDescription").classList.add("displayNone");
+        document.getElementById("mobileButtonContainer").classList.add("displayNone");
+        document.getElementById("mobileButtonContainer").classList.remove("displayFlex");
+        setTimeout(() => {
+          document.getElementById("btn").classList.remove("displayNone");
+        }, 3000);
         return (gameWin = true);
       }
+
+
+      /**
+       * check if the character energy is under 1 and the character y above 500, then show loosescreen
+       * 
+       */
       if (this.character.energy < 1 && this.character.y > 500) {
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.screen);
         this.addToMap(this.loose);
         this.ctx.translate(this.camera_x, 0);
+        document.getElementById("buttonDescription").classList.add("displayNone");
+        document.getElementById("mobileButtonContainer").classList.add("displayNone");
+        document.getElementById("mobileButtonContainer").classList.remove("displayFlex");
         setTimeout(() => {
           document.getElementById("btn").classList.remove("displayNone");
         }, 3000);
@@ -229,7 +321,6 @@ class World {
       this.addToMap(this.startscreen);
       this.ctx.translate(this.camera_x, 0);
     }
-
     this.ctx.translate(-this.camera_x, 0);
 
     // Draw() wird immer wieder aufgerufen
@@ -239,12 +330,24 @@ class World {
     });
   }
 
+
+  /**
+   * function to add objects to map
+   * 
+   * @param {string}  objects- objects parameter.
+   */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
+
+  /**
+   * function to add the flipped image
+   * 
+   * @param {mo}  movable- movable Object.
+   */
   addToMap(mo) {
     //mo = movable Object
     if (mo.otherDirection) {
@@ -256,6 +359,13 @@ class World {
     }
   }
 
+
+  /**
+   * function to flip image when the character go backwards
+   * 
+   * @param {mo}  movable- movable Object.
+   * @param {string} ctx - context of the canvas.
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -263,6 +373,12 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  /**
+   * function to flip image back
+   * 
+   * @param {mo}  movable- movable Object.
+   * @param {string} ctx - context of the canvas.
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();

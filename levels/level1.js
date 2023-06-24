@@ -1,5 +1,14 @@
 let level1;
 
+/**
+ * Initials the level1.
+ * 
+  * @param {array} Chicken - The array of the chickens. 
+  * @param {array} Cloud - The array of the clouds. 
+  * @param {array} BackgroundObject - The array of the backgrounds. 
+  * @param {array} Bottles - The array of the bottles. 
+  * @param {array} Coins - The array of the coins.  
+ */
 function initLevel() {
   level1 = new Level(
     [
@@ -22,10 +31,7 @@ function initLevel() {
     [
       new BackgroundObject("img/5_background/layers/air.png", -719),
       new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),
-      new BackgroundObject(
-        "img/5_background/layers/2_second_layer/2.png",
-        -719
-      ),
+      new BackgroundObject("img/5_background/layers/2_second_layer/2.png", -719),
       new BackgroundObject("img/5_background/layers/1_first_layer/2.png", -719),
       new BackgroundObject("img/5_background/layers/air.png", 0),
       new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 0),
@@ -37,24 +43,15 @@ function initLevel() {
       new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 719),
       new BackgroundObject("img/5_background/layers/air.png", 1438),
       new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 1438),
-      new BackgroundObject(
-        "img/5_background/layers/2_second_layer/1.png",
-        1438
-      ),
+      new BackgroundObject("img/5_background/layers/2_second_layer/1.png", 1438),
       new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 1438),
       new BackgroundObject("img/5_background/layers/air.png", 2157),
       new BackgroundObject("img/5_background/layers/3_third_layer/2.png", 2157),
-      new BackgroundObject(
-        "img/5_background/layers/2_second_layer/2.png",
-        2157
-      ),
+      new BackgroundObject("img/5_background/layers/2_second_layer/2.png", 2157),
       new BackgroundObject("img/5_background/layers/1_first_layer/2.png", 2157),
       new BackgroundObject("img/5_background/layers/air.png", 2876),
       new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 2876),
-      new BackgroundObject(
-        "img/5_background/layers/2_second_layer/1.png",
-        2876
-      ),
+      new BackgroundObject("img/5_background/layers/2_second_layer/1.png", 2876),
       new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 2876),
     ],
     [
@@ -67,6 +64,12 @@ function initLevel() {
       new Bottles(),
       new Bottles(),
     ],
-    [new Coins(), new Coins(), new Coins(), new Coins(), new Coins()]
+    [
+      new Coins(),
+      new Coins(),
+      new Coins(),
+      new Coins(),
+      new Coins()
+    ]
   );
 }

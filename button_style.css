@@ -1,6 +1,4 @@
 .btn {
-    position: absolute;
-    top: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +13,8 @@
     background-image: linear-gradient(#212121, #212121), linear-gradient(137.48deg, #E6D4B1 10%, #FFC81C 45%, #F0C215 67%, #FF9600 87%);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    font-family:'zabars', Arial, Helvetica, sans-serif;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    margin-top: -70px;
 }
 
 #container-stars {
@@ -27,7 +26,7 @@
     transition: 0.5s;
     backdrop-filter: blur(1rem);
     border-radius: 5rem;
-    font-family:'zabars', Arial, Helvetica, sans-serif;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
 strong {
@@ -38,7 +37,7 @@ strong {
     letter-spacing: 10px;
     color: #FFFFFF;
     text-shadow: 0 0 4px white;
-    font-family:'zabars', Arial, Helvetica, sans-serif;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
 #glow {

@@ -1,4 +1,9 @@
 class StatusBarEndboss extends DrawableObject {
+
+  /**
+   * Initials the endboss statusbar.
+   * 
+   */
   IMAGES_HEALTH = [
     "img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png", // 0
     "img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png",
