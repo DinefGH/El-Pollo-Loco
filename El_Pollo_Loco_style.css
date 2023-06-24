@@ -5,10 +5,19 @@ body {
     align-items: center;
     background-color: rgb(255, 150, 0);
     margin: 0;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
+
+
 
 .displayNone {
     display: none !important;
+}
+
+.headline {
+    font-size: 48px;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5)
 }
 
 .closeButton {
@@ -20,20 +29,22 @@ body {
 }
 
 
-
 canvas {
     background-color: black;
     display: block;
 
 }
 
+
 .buttonDescription {
     max-width: 720px;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
+    font-size: 24px;
+    z-index: 2;
 }
+
 
 .startScreen {
     height: 100vh;
@@ -55,31 +66,37 @@ canvas {
     background-color: black;
 }
 
+
 .buttonContainer {
     position: relative;
     z-index: 2;
     top: 50vh;
 }
 
+
 .startButton {
     cursor: pointer;
 }
+
 
 .infoButton {
     cursor: pointer;
 }
 
+
 .infoContainer {
     position: relative;
-    top: 35vh;
+    top: 25vh;
     z-index: 3;
     color: #ffc068;
     background-color: rgba(0, 0, 0, 0.7);
-    height: 30vh;
-    width: 50vw;
+    min-height: 30vh;
+    min-width: 50vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: x-large;
+    padding: 16px;
 }
 
 
@@ -91,14 +108,13 @@ canvas {
     position: absolute;
     top: 0;
     left: 0;
-
 }
+
 
 .loadingScreen {
     height: 100%;
     width: 100%;
 }
-
 
 
 .progressContainer {
@@ -109,7 +125,6 @@ canvas {
 }
 
 
-
 .progress0 {
     position: absolute;
     top: -12vh;
@@ -117,6 +132,32 @@ canvas {
     height: 3.5vw;
 }
 
+.mobileButtonContainer {
+    margin-top: -54px;
+    display: flex;
+    max-width: 720px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.mobileButtonLeft {
+display: flex;
+}
+
+.mobileButtonRight {
+    display: flex;
+
+}
+
+    .mobileButton {
+        background-color: #FF9600;
+    border-radius: 32px;
+    height: 36px;
+    display: flex;
+    margin: 0px 16px 0px 16px;
+    z-index: 2;
+}
+    
 
 
 /* Smartphones */
@@ -130,6 +171,7 @@ canvas {
     }
 
 }
+
 
 /* Smartphones */
 @media only screen and (max-height: 480px) {

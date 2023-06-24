@@ -35,6 +35,8 @@ function closeInfo() {
 function init() {
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+  keyboardPressEvents();
+  buttonsPressEvents();
 
   // for (let i = 1; i < 9999; i++) window.clearInterval(i);
   console.log("My Character is", world.character);
@@ -114,6 +116,51 @@ function restartGame() {
   location.reload();
 }
 
+function buttonsPressEvents() {
+  document.getElementById('buttonLeft').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.A = true;
+  });
+
+  document.getElementById('buttonLeft').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.A = false;
+  });
+
+  document.getElementById('buttonRight').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.D = true;
+  });
+
+  document.getElementById('buttonRight').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.D = false;
+  });
+
+  document.getElementById('buttonJump').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.W = true;
+  });
+
+  document.getElementById('buttonJump').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.W = false;
+  });
+
+  document.getElementById('buttonThrow').addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      keyboard.SPACE = true;
+  });
+
+  document.getElementById('buttonThrow').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      keyboard.SPACE = false;
+  });
+}
+
+
+
+function keyboardPressEvents() {
 window.addEventListener("keydown", (e) => {
   if (e.keyCode == 68) {
     keyboard.D = true;
@@ -149,3 +196,5 @@ window.addEventListener("keyup", (e) => {
     keyboard.SPACE = false;
   }
 });
+}
+

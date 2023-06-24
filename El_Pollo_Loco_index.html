@@ -37,6 +37,12 @@
     <script src="javaScript/El_Polo_Loco_JavaScript.js"></script>
     <link rel="icon" type="image/x-icon" href="img/2_character_pepe/1_idle/idle/I-1.png">
     <title>El Pollo Loco</title>
+    <style>
+        @font-face {
+    font-family: 'zabars';
+    src:url(fonts/Zabars.ttf) format('truetype') ;
+}
+    </style>
 </head>
 
 <body onload="">
@@ -67,6 +73,7 @@
                 src="img/9_intro_outro_screens/start/BTN_Info.png">
         </div>
     </div>
+
 
     <div class="infoContainer displayNone" id="infoContainer">
 
@@ -117,6 +124,16 @@
     <canvas class="displayNone" id="canvas" width="720" height="480">
 
     </canvas>
+    <div class="mobileButtonContainer">
+        <div class="mobileButtonLeft">
+            <div class="mobileButton" id="buttonLeft"><img src="img/buttons/arrow_back.svg"></div>
+            <div class="mobileButton" id="buttonRight"><img src="img/buttons/arrow_forward.svg"></div>
+        </div>
+        <div class="mobileButtonRight">
+            <div class="mobileButton" id="buttonJump"><img src="img/buttons/arrow_upward.svg"></div>
+            <div class="mobileButton" id="buttonThrow"><img src="img/buttons/throw.svg"></div>
+        </div>
+    </div>
 
     <div class="buttonDescription">
         <div>Left ==> A</div>

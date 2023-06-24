@@ -31,6 +31,7 @@ class World {
     this.run();
   }
 
+
   setWorld() {
     this.character.world = this;
     this.endboss.world = this;
@@ -40,6 +41,7 @@ class World {
     this.statusBarEndboss.world = this;
     this.endbossIcon.world = this;
   }
+
 
   run() {
     setInterval(() => {
@@ -52,6 +54,7 @@ class World {
       this.checkCollisionsThrowBottleEndboss();
     }, 100);
   }
+
 
   checkThrowObjects() {
     if (
@@ -70,6 +73,7 @@ class World {
       }, 2500);
     }
   }
+
 
   checkCollisions() {
     this.level.enemies.forEach((enemy, index) => {
@@ -91,11 +95,7 @@ class World {
 
   checkCollisionsEndboss() {
     this.level.enemies.forEach((enemy) => {
-      if (
-        this.character.isAboveGround() &&
-        this.character.isCollidingChicken(this.endboss) &&
-        this.character.speedY < 0
-      ) {
+      if (this.character.isAboveGround() && this.character.isCollidingChicken(this.endboss) && this.character.speedY < 0) {
         this.character.hitEndbossAbove();
         enemy.hitEndbossChicken = true;
         enemy.hitBossChicken = true;
@@ -123,6 +123,7 @@ class World {
       }
     });
   }
+
 
   checkCollisionsThrowBottle() {
     this.throwableObjects.forEach((bottle) => {
