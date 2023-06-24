@@ -1,6 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: rgb(255, 150, 0);
     margin: 0;
@@ -11,16 +12,14 @@ body {
 }
 
 .closeButton {
-    position: relative;
-    left: 38vw;
-    top: -12vh;
+    position: absolute;
+    right: 0;
+    top: 0;
     color: #FF9600;
     cursor: pointer;
 }
 
-.headline {
 
-}
 
 canvas {
     background-color: black;
@@ -28,20 +27,32 @@ canvas {
 
 }
 
-.buttonDescreption {
-    width: 720px;
+.buttonDescription {
+    max-width: 720px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
 }
 
 .startScreen {
-height: 100vh;
-width: 100%;
-z-index: 1;
-position: absolute;
-top: 0;
-left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.endScreen {
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
 }
 
 .buttonContainer {
@@ -72,9 +83,44 @@ left: 0;
 }
 
 
+.loadingScreenContainer {
+
+    height: 99.5%;
+    width: 100%;
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.loadingScreen {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.progressContainer {
+    z-index: 10;
+    position: absolute;
+    top: 100vh;
+    left: 10%
+}
+
+
+
+.progress0 {
+    position: absolute;
+    top: -12vh;
+    width: 80vw;
+    height: 3.5vw;
+}
+
+
 
 /* Smartphones */
-@media only screen and ( max-width: 720px) {
+@media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
     }
@@ -86,7 +132,7 @@ left: 0;
 }
 
 /* Smartphones */
-@media only screen and ( max-height: 480px) {
+@media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
     }
@@ -95,9 +141,8 @@ left: 0;
         display: none;
     }
 
-    .buttonDescreption {
+    .buttonDescription {
         width: 100%;
         display: none;
     }
 }
-

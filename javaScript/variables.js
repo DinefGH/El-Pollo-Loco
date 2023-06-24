@@ -1,7 +1,11 @@
 let canvas;
 let world;
+let chicken;
+let movableObject;
 let imagesToLoad = 0;
 let imagesLoaded = 0;
-let percent = 0;
-let EndbossChickenHit = true
-let startgame = false
+let percent;
+let EndbossChickenHit = true;
+let startGameVar = true;
+let gameWin = false;
+let gameLost = false;

@@ -8,6 +8,7 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
     imagesToLoad = 0;
+    percent = 0 
  
 
 
@@ -18,8 +19,10 @@ class DrawableObject {
             imagesLoaded++;
       let percent = (imagesLoaded / imagesToLoad) * 100;
       console.log(`${percent} loaded`);
+
   }
   this.img.src = path;
+
 }
 
   draw(ctx) {
@@ -31,60 +34,6 @@ class DrawableObject {
   }
 }
 
-
-  drawFrameCharacter(ctx) {
-    if (this instanceof Character) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x+15, this.y+120, this.width-35, this.height-130);
-      ctx.stroke();
-    }
-  }
-
-
-  drawFrameEndboss(ctx) {
-    if (this instanceof Endboss) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x+10, this.y+80, this.width-25, this.height-95);
-      ctx.stroke();
-    }
-  }
-
-  
-  drawFrameChicken(ctx) {
-    if (this instanceof Chicken) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x+3, this.y+5, this.width-5, this.height-10);
-      ctx.stroke();
-    }
-  }
-
-
- drawFrameBottles(ctx) {
-    if (this instanceof Bottles) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x+30, this.y+50, this.width-50, this.height-100);
-      ctx.stroke();
-    }
-  }
-
-
-  drawFrameCoins(ctx) {
-    if (this instanceof Coins) {
-      ctx.beginPath();
-      ctx.lineWidth = "5";
-      ctx.strokeStyle = "blue";
-      ctx.rect(this.x+32, this.y+50, this.width-65, this.height-100);
-      ctx.stroke();
-    }
-  }
 
 
 

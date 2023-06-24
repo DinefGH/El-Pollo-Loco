@@ -1,7 +1,7 @@
 class Keyboard {
-    A;
-    D;
-    W;
-    S;
-    SPACE;
+  A;
+  D;
+  W;
+  S;
+  SPACE;
 }

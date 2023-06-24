@@ -36,26 +36,23 @@ class Character extends MovableObject {
   ];
 
   IMAGES_HURT = [
-    'img/2_character_pepe/4_hurt/H-41.png',
-    'img/2_character_pepe/4_hurt/H-42.png',
-    'img/2_character_pepe/4_hurt/H-43.png',
+    "img/2_character_pepe/4_hurt/H-41.png",
+    "img/2_character_pepe/4_hurt/H-42.png",
+    "img/2_character_pepe/4_hurt/H-43.png",
   ];
-
 
   IMAGES_STAND = [
-    'img/2_character_pepe/1_idle/idle/I-1.png',
-    'img/2_character_pepe/1_idle/idle/I-2.png',
-    'img/2_character_pepe/1_idle/idle/I-3.png',
-    'img/2_character_pepe/1_idle/idle/I-4.png',
-    'img/2_character_pepe/1_idle/idle/I-5.png',
-    'img/2_character_pepe/1_idle/idle/I-6.png',
-    'img/2_character_pepe/1_idle/idle/I-7.png',
-    'img/2_character_pepe/1_idle/idle/I-8.png',
-    'img/2_character_pepe/1_idle/idle/I-9.png',
-    'img/2_character_pepe/1_idle/idle/I-10.png',
+    "img/2_character_pepe/1_idle/idle/I-1.png",
+    "img/2_character_pepe/1_idle/idle/I-2.png",
+    "img/2_character_pepe/1_idle/idle/I-3.png",
+    "img/2_character_pepe/1_idle/idle/I-4.png",
+    "img/2_character_pepe/1_idle/idle/I-5.png",
+    "img/2_character_pepe/1_idle/idle/I-6.png",
+    "img/2_character_pepe/1_idle/idle/I-7.png",
+    "img/2_character_pepe/1_idle/idle/I-8.png",
+    "img/2_character_pepe/1_idle/idle/I-9.png",
+    "img/2_character_pepe/1_idle/idle/I-10.png",
   ];
-  
-
 
   constructor() {
     super().loadImage("img/2_character_pepe/1_idle/idle/I-1.png");
@@ -80,7 +77,6 @@ class Character extends MovableObject {
         // this.walking_sound.play();
       }
 
-
       if (this.world.keyboard.W && !this.isAboveGround()) {
         this.jump();
       }
@@ -89,18 +85,16 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if(this.isDead()) {
+      if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
-      } else if (this.world.keyboard.D || this.world.keyboard.A) { 
-          // walk Animation
-          this.playAnimation(this.IMAGES_IDLE);
+      } else if (this.world.keyboard.D || this.world.keyboard.A) {
+        // walk Animation
+        this.playAnimation(this.IMAGES_IDLE);
       } else this.playAnimation(this.IMAGES_STAND);
-    
     }, 1000 / 20);
   }
 }
-

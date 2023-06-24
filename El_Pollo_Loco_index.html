@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="El_Pollo_Loco_style.css">
-    
+    <link rel="stylesheet" href="button_style.css">
+
     <script src="javaScript/variables.js"></script>
+    <script src="models/draw-frames.class.js"></script>
     <script src="models/drawable-object.class.js"></script>
+    
     <script src="models/start-screen.class.js"></script>
     <script src="models/screen.class.js"></script>
     <script src="models/loose.class.js"></script>
@@ -34,49 +38,92 @@
     <link rel="icon" type="image/x-icon" href="img/2_character_pepe/1_idle/idle/I-1.png">
     <title>El Pollo Loco</title>
 </head>
-<body onload="init()">
+
+<body onload="">
     <!-- <div class="rotateContainer">
         <div class="rotate">
             rotate your device
         </div> -->
-        
-        <div  class="startScreenContainer" id="startScreenContainer">
-            <img class="startScreen" id="startScreen" src="img/5_background/first_half_background.png">
-            
-            <div class="buttonContainer">
-            <img class="startButton" id="startButton" onclick="startGame()" src="img/9_intro_outro_screens/start/BTN_Start.png">
-            <img class="infoButton" id="infoButton" onclick="startInfo()" src="img/9_intro_outro_screens/start/BTN_Info.png">
-            </div>
+
+    <button class="btn displayNone" id="btn" type="button" onclick="restartGame()">
+        <strong>RESTART</strong>
+        <div id="container-stars">
+            <div id="stars"></div>
         </div>
 
-        <div class="infoContainer displayNone" id="infoContainer">
+        <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </button>
 
-            <img class="closeButton" onclick="closeInfo()" src="img/9_intro_outro_screens/start/closeButton.svg">
-           <div class="infoText">
+    <div class="startScreenContainer" id="startScreenContainer">
+        <img class="startScreen" id="startScreen" src="img/5_background/first_half_background.png">
+
+        <div class="buttonContainer">
+            <img class="startButton" id="startButton" onclick="startGame()"
+                src="img/9_intro_outro_screens/start/BTN_Start.png">
+            <img class="infoButton" id="infoButton" onclick="startInfo()"
+                src="img/9_intro_outro_screens/start/BTN_Info.png">
+        </div>
+    </div>
+
+    <div class="infoContainer displayNone" id="infoContainer">
+
+        <img class="closeButton" onclick="closeInfo()" src="img/9_intro_outro_screens/start/closeButton.svg">
+        <div class="infoText">
             move left ==> A <br>
             move right ==> D<br>
             jump ==> W<br>
             throw Bottle ==> Space<br>
             collect coins for higher jump<br>
             collect bottles and throw them on enemies to kill them<br>
+            attention there is a limited number of bottles available<br>
             you can kill enemies when you jump on them
-            </div>
         </div>
+    </div>
+
+    <div class="loadingScreenContainer displayNone" id="loadingScreenContainer">
+        <img class="loadingScreen " id="loadingScreen" src="img/9_intro_outro_screens/start/startscreen_1.png">
+        <div class="progressContainer">
+            <img class="progress0 displayNone" id="progress0"
+                src="img/9_intro_outro_screens/start/progressbart_load_0.png">
+            <img class="progress0 displayNone" id="progress10"
+                src="img/9_intro_outro_screens/start/progressbart_load_10.png">
+            <img class="progress0 displayNone" id="progress20"
+                src="img/9_intro_outro_screens/start/progressbart_load_20.png">
+            <img class="progress0 displayNone" id="progress30"
+                src="img/9_intro_outro_screens/start/progressbart_load_30.png">
+            <img class="progress0 displayNone" id="progress40"
+                src="img/9_intro_outro_screens/start/progressbart_load_40.png">
+            <img class="progress0 displayNone" id="progress50"
+                src="img/9_intro_outro_screens/start/progressbart_load_50.png">
+            <img class="progress0 displayNone" id="progress60"
+                src="img/9_intro_outro_screens/start/progressbart_load_60.png">
+            <img class="progress0 displayNone" id="progress70"
+                src="img/9_intro_outro_screens/start/progressbart_load_70.png">
+            <img class="progress0 displayNone" id="progress80"
+                src="img/9_intro_outro_screens/start/progressbart_load_80.png">
+            <img class="progress0 displayNone" id="progress90"
+                src="img/9_intro_outro_screens/start/progressbart_load_90.png">
+        </div>
+    </div>
+
 
     </div>
     <h1 class="headline">El Pollo Loco
     </h1>
 
     <canvas class="displayNone" id="canvas" width="720" height="480">
-    
+
     </canvas>
 
-<div class="buttonDescreption">
-<div>Left ==> A</div>
-<div>Right ==> D</div>
-<div>Jump ==> W</div>
-<div>Throw Bottle ==> Space</div>
-</div>
+    <div class="buttonDescription">
+        <div>Left ==> A</div>
+        <div>Right ==> D</div>
+        <div>Jump ==> W</div>
+        <div>Throw Bottle ==> Space</div>
+    </div>
 </body>
-</html>
 
+</html>
