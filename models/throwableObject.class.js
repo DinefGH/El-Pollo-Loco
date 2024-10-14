@@ -20,6 +20,8 @@ class ThrowableObject extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  splash_sound = new Audio ("audio/bottle_short.mp3")
+
 
   currentImage = 0;
   height = 60;
@@ -38,13 +40,27 @@ class ThrowableObject extends MovableObject {
 
 
   animateBottles() {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if (this.bottleHit()) {
         this.playAnimation(this.IMAGES_SPLASH);
+        this.splash_sound.play()
+        setTimeout(() => {
+        clearInterval(interval);
+      }, 10);
       } else this.playAnimation(this.IMAGES_IDLE);
     }, 1000 / 10);
-  }
+    }
+  
+  
 
+  
+
+
+  isSplashed() {
+    let timePassed = new Date().getTime() - 1687671616304; // Difference in ms
+    timePassed = timePassed / 1000;
+    return timePassed < 0.5;
+  }
 
   bottleHit() {
     return this.hitEnemy;

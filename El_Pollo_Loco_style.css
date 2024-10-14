@@ -54,7 +54,7 @@ canvas {
 .startScreen {
     height: 100vh;
     width: 100%;
-    z-index: 1;
+    z-index: 3;
     position: absolute;
     top: 0;
     left: 0;
@@ -74,7 +74,7 @@ canvas {
 
 .buttonContainer {
     position: relative;
-    z-index: 2;
+    z-index: 4;
     top: 50vh;
 }
 
@@ -140,7 +140,7 @@ canvas {
 .mobileButtonContainer {
     margin-top: -54px;
     display: flex;
-    max-width: 720px;
+    max-width: 820px;
     width: 100%;
     justify-content: space-between;
     display: none;
@@ -168,7 +168,7 @@ canvas {
 
 
 /* Smartphones */
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 900px) {
     canvas {
         width: 100%;
     }

@@ -47,6 +47,7 @@ class Endboss extends MovableObject {
   currentImage = 0;
   hitEndbossChicken = false;
   endbossWalkStart = false;
+  chicken_hit = new Audio ("audio/chicken_short.mp3")
 
   height = 350;
   width = 350;
@@ -60,7 +61,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ENDBOSS_WALK);
     this.applyGravityEndboss();
     this.x = 2800;
-    this.speed = 15.5;
+    this.speed = 18.5;
     this.animateEndboss();
   }
 
@@ -70,9 +71,12 @@ class Endboss extends MovableObject {
   * 
   */
   animateEndboss() {
-    setInterval(() => {
+    const interval = setInterval(() => {
       if ((this.isDead() && this.isAboveGround()) || (this.isDead() && this.hitChickenEndboss())) {
         this.playEndbossDead();
+        setTimeout(() => {
+        clearInterval(interval);
+      }, 1000);
       } else if (this.isHurt()) {
         this.playEndbossHurt();
       } else this.playAnimation(this.IMAGES_IDLE);
@@ -88,6 +92,7 @@ class Endboss extends MovableObject {
   playEndbossDead() {
     this.y - 300;
     this.playAnimation(this.IMAGES_ENDBOSS_DEAD);
+    this.chicken_hit.play();
   }
 
 
@@ -115,7 +120,6 @@ class Endboss extends MovableObject {
         this.otherDirection = false;
         this.playAnimation(this.IMAGES_ENDBOSS_ATTACK);
       }, 1000 / 5);
-      console.log("ID von setintervalAttack:", endbossAttackID);
       setTimeout(() => {
         clearInterval(endbossAttackID);
       }, 1000);
@@ -135,7 +139,6 @@ class Endboss extends MovableObject {
         this.otherDirection = false;
         this.playAnimation(this.IMAGES_ENDBOSS_WALK);
       }, 1000 / 5);
-      console.log("ID von setinterval:", endbossWalkID);
       setTimeout(() => {
         clearInterval(endbossWalkID);
       }, 1000);
@@ -153,6 +156,7 @@ class Endboss extends MovableObject {
     return this.endbossWalkStart;
   }
 
+  
   ChickenEndbossHit() {
     return this.EndbossChickenHit;
   }

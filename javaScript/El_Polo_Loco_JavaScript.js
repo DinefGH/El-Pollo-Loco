@@ -48,7 +48,6 @@ function closeInfo() {
 }
 
 
-
 /**
  * Initials the canvas and start the control functions.
  * 
@@ -67,8 +66,16 @@ function init() {
  * 
  */
 function restartGame() {
-  location.reload();
+  clearAllIntervals();
+  document.getElementById("startScreenContainer").classList.remove("displayNone");
+  document.getElementById("canvas").classList.add("displayNone");
+    location.reload();
 }
+
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 
 
 /**

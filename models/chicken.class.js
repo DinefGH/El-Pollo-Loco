@@ -39,8 +39,8 @@ class Chicken extends MovableObject {
 
     setInterval(() => {
       // walk Animation
-      if (this.chickenHit()) this.playAnimation(this.IMAGES_DEAD);
-      else this.playAnimation(this.IMAGES_IDLE);
+      if (this.chickenHit()){ this.playAnimation(this.IMAGES_DEAD);
+      }else this.playAnimation(this.IMAGES_IDLE);
     }, 1000 / 5);
   }
 

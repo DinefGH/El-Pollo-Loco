@@ -28,7 +28,7 @@ class MovableObject extends DrawableObject {
   };
 
 
-  // E ==> EndbossCharacter
+  // End ==> EndbossCharacter
   offsetEnd = {
     topEnd: 0,
     bottomEnd: 0,
@@ -221,6 +221,7 @@ class MovableObject extends DrawableObject {
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
+      
     }
   }
 
@@ -228,7 +229,7 @@ class MovableObject extends DrawableObject {
   isHurt() {
     let timePassed = new Date().getTime() - this.lastHit; // Difference in ms
     timePassed = timePassed / 1000;
-    return timePassed < 0.8;
+    return timePassed < 0.1;
   }
 
 

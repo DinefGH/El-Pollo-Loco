@@ -15,6 +15,7 @@
     background-clip: content-box, border-box;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
     margin-top: -70px;
+    cursor: pointer;
 }
 
 #container-stars {

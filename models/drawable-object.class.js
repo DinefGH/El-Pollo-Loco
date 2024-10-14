@@ -3,7 +3,6 @@ class DrawableObject {
   * Initials the drawableobjects.
   * 
   */
-
   x = 120;
   y = 275;
   height = 150;
@@ -26,7 +25,6 @@ class DrawableObject {
     this.img.onload = () => {
       imagesLoaded++;
       let percent = (imagesLoaded / imagesToLoad) * 100;
-      console.log(`${percent} loaded`);
     }
     this.img.src = path;
   }
